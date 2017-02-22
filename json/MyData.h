@@ -7,7 +7,7 @@
 @property (nonatomic, strong) NSString * complete;
 @property (nonatomic, strong) NSString * createdAt;
 @property (nonatomic, strong) NSString * favorite;
-@property (nonatomic, assign) NSInteger idField;
+@property (nonatomic, strong) NSNumber * idField;
 @property (nonatomic, strong) NSArray * images;
 @property (nonatomic, strong) NSString * intro;
 @property (nonatomic, strong) NSString * note;

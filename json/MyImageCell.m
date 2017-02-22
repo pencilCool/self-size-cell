@@ -35,8 +35,10 @@
     self.titleLabel = [UILabel new];
     self.titleLabel.numberOfLines  = 2;
     [self.titleLabel sizeToFit];
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.font = [UIFont systemFontOfSize:20];
+    [self.titleLabel setContentHuggingPriority:251 forAxis:UILayoutConstraintAxisVertical];
     [self.contentView addSubview:self.titleLabel];
     
     self.introLabel = [UILabel new];
@@ -44,11 +46,14 @@
     [self.introLabel sizeToFit];
     self.introLabel.textColor = [UIColor greenColor];
     self.introLabel.font = [UIFont systemFontOfSize:17.0];
+    self.introLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.introLabel setContentHuggingPriority:251 forAxis:UILayoutConstraintAxisVertical];
     [self.contentView addSubview:self.introLabel];
     
     
     self.myImageView = [UIImageView new];
     self.myImageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.myImageView.translatesAutoresizingMaskIntoConstraints  = NO;
     [self.contentView addSubview:self.myImageView];
     
     
@@ -60,9 +65,10 @@
     [self.myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right);
         make.width.mas_equalTo(@(self.contentView.width * 0.3));
-        make.top.equalTo(self.contentView.mas_top).with.priority(251);
-        make.bottom.equalTo(self.contentView.mas_bottom).with.priority(251);
-//        make.height.lessThanOrEqualTo(self.contentView).with.priorityLow();
+        make.centerY.equalTo(self.contentView);
+        make.top.equalTo(self.contentView.mas_top).with.priorityLow();
+        make.bottom.equalTo(self.contentView.mas_bottom).with.priorityLow();
+
     }];
     
     
@@ -70,6 +76,7 @@
         make.top.equalTo(self.contentView.mas_top);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.myImageView.mas_left);
+        make.bottom.equalTo(self.introLabel.mas_top);
         
     }];
     
@@ -86,7 +93,16 @@
     
     self.titleLabel.text = model.title;
     self.introLabel.text = model.intro;
-    [self.myImageView setImageWithURL:[NSURL URLWithString:model.images[0]] options:YYWebImageOptionProgressive];
+    
+    [self.myImageView setImageWithURL:[NSURL URLWithString:model.images[0]] placeholder:nil options:YYWebImageOptionProgressive completion:^(UIImage * _Nullable image,
+                                                                                                                                             NSURL *url,
+                                                                                                                                             YYWebImageFromType from,
+                                                                                                                                             YYWebImageStage stage,
+                                                                                                                                             NSError * _Nullable error){
+        
+        
+        
+    }];
     
 }
 

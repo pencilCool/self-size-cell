@@ -18,7 +18,7 @@
 }
 
 + (NSArray *)modelPropertyWhitelist {
-    return @[@"title",@"intro",@"images"];
+    return @[@"title",@"intro",@"images",@"idField"];
 }
 
 @end

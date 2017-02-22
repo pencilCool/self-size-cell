@@ -57,6 +57,8 @@
 {
     MyData *model = self.dataSource[indexPath.row];
     if (model.images!= nil && model.images.count>0) {
+        
+        
         MyImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myImagecell" forIndexPath:indexPath];
         cell.model = model;
         return cell;
@@ -72,26 +74,24 @@
       return self.dataSource.count;
 }
 
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    MyData *model = self.dataSource[indexPath.row];
-//
-//    if (model.images!= nil && model.images.count>0) {
-//        return [tableView fd_heightForCellWithIdentifier:@"myImagecell"
-//                                           configuration:^(MyImageCell *cell) {
-//            cell.model = model;
-//        }];
-//     
-//    }else{
-//        return [tableView fd_heightForCellWithIdentifier:@"mycell"
-//                                           configuration:^(MyCell *cell) {
-//            cell.model = model;
-//        }];
-//    }
-//    
-//   
-//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MyData *model = self.dataSource[indexPath.row];
+
+    if (model.images!= nil && model.images.count>0) {
+        return [tableView fd_heightForCellWithIdentifier:@"myImagecell" cacheByKey:model.idField configuration:^(MyImageCell *cell) {
+            cell.model = model;
+        }];
+     
+    }else{
+        return [tableView fd_heightForCellWithIdentifier:@"mycell" cacheByKey:model.idField configuration:^(MyCell * cell) {
+            cell.model = model;
+        }];
+    }
+    
+   
+}
 
 
 - (void)didReceiveMemoryWarning {
