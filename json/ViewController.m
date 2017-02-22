@@ -35,7 +35,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    self.tableView.delegate   = self;
     
     [self.view addSubview:self.tableView];
     self.view.backgroundColor = [UIColor greenColor];
@@ -46,7 +46,7 @@
     }];
     
     [self.tableView registerClass:[MyCell class] forCellReuseIdentifier:@"mycell"];
-    [self.tableView registerClass:[MyCell class] forCellReuseIdentifier:@"myImagecell"];
+    [self.tableView registerClass:[MyImageCell class] forCellReuseIdentifier:@"myImagecell"];
     self.tableView.estimatedRowHeight = 60;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.fd_debugLogEnabled = YES;
@@ -72,26 +72,26 @@
       return self.dataSource.count;
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MyData *model = self.dataSource[indexPath.row];
-
-    if (model.images!= nil && model.images.count>0) {
-        return [tableView fd_heightForCellWithIdentifier:@"myImagecell"
-                                           configuration:^(MyImageCell *cell) {
-            cell.model = model;
-        }];
-     
-    }else{
-        return [tableView fd_heightForCellWithIdentifier:@"mycell"
-                                           configuration:^(MyCell *cell) {
-            cell.model = model;
-        }];
-    }
-    
-   
-}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    MyData *model = self.dataSource[indexPath.row];
+//
+//    if (model.images!= nil && model.images.count>0) {
+//        return [tableView fd_heightForCellWithIdentifier:@"myImagecell"
+//                                           configuration:^(MyImageCell *cell) {
+//            cell.model = model;
+//        }];
+//     
+//    }else{
+//        return [tableView fd_heightForCellWithIdentifier:@"mycell"
+//                                           configuration:^(MyCell *cell) {
+//            cell.model = model;
+//        }];
+//    }
+//    
+//   
+//}
 
 
 - (void)didReceiveMemoryWarning {

@@ -60,7 +60,9 @@
     [self.myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right);
         make.width.mas_equalTo(@(self.contentView.width * 0.3));
-        make.height.lessThanOrEqualTo(self.contentView);
+        make.top.equalTo(self.contentView.mas_top).with.priority(251);
+        make.bottom.equalTo(self.contentView.mas_bottom).with.priority(251);
+//        make.height.lessThanOrEqualTo(self.contentView).with.priorityLow();
     }];
     
     
